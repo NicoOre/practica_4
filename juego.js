@@ -43,17 +43,15 @@ function moverArriba() {
     }
 }
 
-window.onload = function(){
-    window.onkeydown = function(tecla){
-        if(tecla.keyCode == 38 || tecla.keyCode == 87){
-            moverArriba()
-        } else if (tecla.keyCode == 37 || tecla.keyCode == 65) {
-            moverIzquierda()
-        } else if (tecla.keyCode == 40 || tecla.keyCode == 83) {
-            moverAbajo()
-        } else if (tecla.keyCode == 39 || tecla.keyCode == 68) {
-            moverDerecha()
-        }
-        console.log(tecla)
+
+window.onkeydown = function (tecla) {  
+    if (tecla.keyCode == 38 || tecla.keyCode == 87) {
+        moverArriba()
+    } else if (tecla.keyCode == 37 || tecla.keyCode == 65) {
+        moverIzquierda()
+    } else if (tecla.keyCode == 40 || tecla.keyCode == 83) {
+        moverAbajo()
+    } else if (tecla.keyCode == 39 || tecla.keyCode == 68) {
+        moverDerecha()
     }
-};
+}
