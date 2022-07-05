@@ -9,6 +9,7 @@ function dibujar(ctx) {
     ctx.fillRect(movX, movY, 100, 100)
 }
 
+
 function moverDerecha() {
     if (movX != 300) {
         ctx.clearRect(movX, movY, 100, 100)
@@ -41,3 +42,18 @@ function moverArriba() {
         ctx.fillRect(movX, movY, 100, 100)
     }
 }
+
+window.onload = function(){
+    window.onkeydown = function(tecla){
+        if(tecla.keyCode == 38 || tecla.keyCode == 87){
+            moverArriba()
+        } else if (tecla.keyCode == 37 || tecla.keyCode == 65) {
+            moverIzquierda()
+        } else if (tecla.keyCode == 40 || tecla.keyCode == 83) {
+            moverAbajo()
+        } else if (tecla.keyCode == 39 || tecla.keyCode == 68) {
+            moverDerecha()
+        }
+        console.log(tecla)
+    }
+};
