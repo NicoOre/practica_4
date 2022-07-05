@@ -5,7 +5,7 @@ var movY = 0
 dibujar(ctx)
 
 function dibujar(ctx) {
-    ctx.fillStyle="red"
+    ctx.fillStyle = "red"
     ctx.fillRect(movX, movY, 100, 100)
 }
 
@@ -19,9 +19,11 @@ function moverDerecha() {
 }
 
 function moverAbajo() {
-    ctx.clearRect(movX, movY, 100, 100)
-    movY += 10
-    ctx.fillRect(movX, movY, 100, 100)
+    if (movY != 300) {
+        ctx.clearRect(movX, movY, 100, 100)
+        movY += 10
+        ctx.fillRect(movX, movY, 100, 100)
+    }
 }
 
 function moverIzquierda() {
@@ -33,7 +35,9 @@ function moverIzquierda() {
 }
 
 function moverArriba() {
-    ctx.clearRect(movX, movY, 100, 100)
-    movY -= 10
-    ctx.fillRect(movX, movY, 100, 100)
+    if (movY != 0) {
+        ctx.clearRect(movX, movY, 100, 100)
+        movY -= 10
+        ctx.fillRect(movX, movY, 100, 100)
+    }
 }
