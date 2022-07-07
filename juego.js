@@ -1,73 +1,37 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var score = 0
-var movX = 0
-var movY = 0
-dibujar(ctx)
-setInterval(generarPuntos, 1000);
+var canvas
+var ctx
+var posX = 0
+var posY = 0
+var tecla
 
-
-function dibujar(ctx) {
-    ctx.fillStyle = "red"
-    ctx.fillRect(movX, movY, 100, 100)
+function inicio() {
+    canvas = document.getElementById("canvas")
+    ctx = canvas.getContext('2d')
+    setInterval(actualizar, 1)
 }
 
+function actualizar() {
+    ctx.clearRect(0, 0, 800, 400)
+    dibujar()
+}
 
-function moverDerecha() {
-    ctx.fillStyle = "red"
-    if (movX != 300) {
-        ctx.clearRect(movX, movY, 100, 100)
-        movX += 10
-        ctx.fillRect(movX, movY, 100, 100)
+window.onkeydown = function obtenerTecla(valor) {
+    tecla = valor.key
+
+    if (tecla == 'w') {
+        posY -= 10
+    } else if (tecla == 'a') {
+        posX -= 10
+    } else if (tecla == 's') {
+        posY += 10
+    } else if (tecla == 'd') {
+        posX += 10
     }
 
+    console.log(tecla)
 }
 
-function moverAbajo() {
-    ctx.fillStyle = "red"
-    if (movY != 300) {
-        ctx.clearRect(movX, movY, 100, 100)
-        movY += 10
-        ctx.fillRect(movX, movY, 100, 100)
-    }
-}
-
-function moverIzquierda() {
-    ctx.fillStyle = "red"
-    if (movX != 0) {
-        ctx.clearRect(movX, movY, 100, 100)
-        movX -= 10
-        ctx.fillRect(movX, movY, 100, 100)
-    }
-}
-
-function moverArriba() {
-    ctx.fillStyle = "red"
-    if (movY != 0) { 
-        ctx.clearRect(movX, movY, 100, 100)
-        movY -= 10
-        ctx.fillRect(movX, movY, 100, 100)
-    }
-}
-
-function generarPuntos() {
-    var x = Math.floor(Math.random()*400)
-    var y = Math.floor(Math.random()*400)
-    
-    ctx.fillStyle =  "blue"
-    ctx.fillRect(x, y, 10, 10)
-}
-
-
-window.onkeydown = function (tecla) {  
-    if (tecla.keyCode == 38 || tecla.keyCode == 87) {
-        moverArriba()
-    } else if (tecla.keyCode == 37 || tecla.keyCode == 65) {
-        moverIzquierda()
-    } else if (tecla.keyCode == 40 || tecla.keyCode == 83) {
-        moverAbajo()
-    } else if (tecla.keyCode == 39 || tecla.keyCode == 68) {
-        moverDerecha()
-    }
-    
+function dibujar() {
+    ctx.fillStyle = 'red'
+    ctx.fillRect(posX, posY, 100, 100)
 }
