@@ -2,42 +2,56 @@ var canvas
 var ctx
 var posX = 0
 var posY = 0
+var posAleatoriaX
+var posAleatoriaY
+var posAleatoriaX2
+var posAleatoriaY2
 var tiempo
-var tiempoInicial
 var tf = 20
 var tm = 15
 var td = 10
+var puntos = 0
 var tecla
 
 function facil() {
     tiempo = tf
-    tiempoInicial = tiempo
     canvas = document.getElementById("canvas")
     ctx = canvas.getContext('2d')
     document.getElementById('tiempo').innerHTML = 'Tiempo: ' + (tiempo)
     tiempo--
+    posAleatoriaX = random(0, 790)
+    posAleatoriaY = random(0, 390)
+    posAleatoriaX2 = random(0, 790)
+    posAleatoriaY2 = random(0, 390)
     setInterval(temporizador, 1000)
     setInterval(actualizar, 20)
+
 }
 
 function medio() {
     tiempo = tm
-    tiempoInicial = tiempo
     canvas = document.getElementById("canvas")
     ctx = canvas.getContext('2d')
     document.getElementById('tiempo').innerHTML = 'Tiempo: ' + (tiempo)
     tiempo--
+    posAleatoriaX = random(0, 790)
+    posAleatoriaY = random(0, 390)
+    posAleatoriaX2 = random(0, 790)
+    posAleatoriaY2 = random(0, 390)
     setInterval(temporizador, 1000)
     setInterval(actualizar, 1)
 }
 
 function dificil() {
     tiempo = td
-    tiempoInicial = tiempo
     canvas = document.getElementById("canvas")
     ctx = canvas.getContext('2d')
     document.getElementById('tiempo').innerHTML = 'Tiempo: ' + (tiempo)
     tiempo--
+    posAleatoriaX = random(0, 790)
+    posAleatoriaY = random(0, 390)
+    posAleatoriaX2 = random(0, 790)
+    posAleatoriaY2 = random(0, 390)
     setInterval(temporizador, 1000)
     setInterval(actualizar, 1)
 }
@@ -53,14 +67,17 @@ function temporizador() {
 }
 
 function actualizar() {
-
     if (tiempo > -1) {
         limpiar()
         dibujar()
+        dibujarPunto()
+        tomarPunto()
+        dibujarBuff()
+        tomarBuff()
+        escribirPuntos()
     } else {
         gameOver()
     }
-
 }
 
 window.onkeydown = function obtenerTecla(valor) {
@@ -68,15 +85,17 @@ window.onkeydown = function obtenerTecla(valor) {
 
     if (posY > 0 && (tecla == 'w' || tecla == 'W' || tecla == 'ArrowUp')) {
         posY -= 10
+        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
     } else if (posX > 0 && (tecla == 'a' || tecla == 'A' || tecla == 'ArrowLeft')) {
         posX -= 10
+        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
     } else if (posY + 100 < 400 && (tecla == 's' || tecla == 'S' || tecla == 'ArrowDown')) {
         posY += 10
+        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
     } else if (posX + 100 < 800 && (tecla == 'd' || tecla == 'D' || tecla == 'ArrowRight')) {
         posX += 10
+        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
     }
-
-    console.log(tecla)
 }
 
 function dibujar() {
@@ -86,7 +105,6 @@ function dibujar() {
 
 function gameOver() {
     limpiar()
-    ctx.fillStyle = "rgb(250,0,0)"
     ctx.font = "100px arial";
     ctx.textBaseline = "middle";
     ctx.textAlign = "center";
@@ -94,7 +112,6 @@ function gameOver() {
     ctx.font = "25px arial";
     ctx.textBaseline = "middle";
     ctx.textAlign = "center";
-    ctx.fillStyle = "rgb(0,0,0)"
     ctx.fillText("(Recarga la pagina para jugar de nuevo)", 400, 280);
 }
 
@@ -102,4 +119,44 @@ function limpiar() {
     canvas = document.getElementById("canvas")
     ctx = canvas.getContext('2d')
     ctx.clearRect(0, 0, 800, 400)
+}
+
+function dibujarPunto() {
+    ctx.fillStyle = "blue"
+    ctx.fillRect(posAleatoriaX, posAleatoriaY, 10, 10)
+}
+
+function tomarPunto() {
+
+    if ((posAleatoriaX >= posX && posAleatoriaX + 10 <= posX + 100) && (posAleatoriaY >= posY && posAleatoriaY + 10 <= posY + 100)) {
+        posAleatoriaX = random(0, 790)
+        posAleatoriaY = random(0, 390)
+        ctx.fillStyle = "blue"
+        ctx.fillRect(posAleatoriaX, posAleatoriaY, 10, 10)
+        puntos ++
+    }
+}
+
+function escribirPuntos() {
+    document.getElementById("puntos").innerHTML = "Puntos: " + puntos
+}
+
+function dibujarBuff() {
+    ctx.fillStyle = "black"
+    ctx.fillRect(posAleatoriaX2, posAleatoriaY2, 10, 10)
+}
+
+function tomarBuff() {
+    if ((posAleatoriaX2 >= posX && posAleatoriaX2 + 10 <= posX + 100) && (posAleatoriaY2 >= posY && posAleatoriaY2 + 10 <= posY + 100)) {
+        posAleatoriaX2 = random(0, 790)
+        posAleatoriaY2 = random(0, 390)
+        ctx.fillStyle = "black"
+        ctx.fillRect(posAleatoriaX2, posAleatoriaY2, 10, 10)
+        tiempo += 3
+        puntos--
+    }
+}
+
+function random(min, max) {
+    return Math.floor((Math.random() * (max - min + 1)) + min);
 }
