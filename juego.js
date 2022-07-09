@@ -85,16 +85,16 @@ window.onkeydown = function obtenerTecla(valor) {
 
     if (posY > 0 && (tecla == 'w' || tecla == 'W' || tecla == 'ArrowUp')) {
         posY -= 10
-        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
+        
     } else if (posX > 0 && (tecla == 'a' || tecla == 'A' || tecla == 'ArrowLeft')) {
         posX -= 10
-        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
+        
     } else if (posY + 100 < 400 && (tecla == 's' || tecla == 'S' || tecla == 'ArrowDown')) {
         posY += 10
-        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
+        
     } else if (posX + 100 < 800 && (tecla == 'd' || tecla == 'D' || tecla == 'ArrowRight')) {
         posX += 10
-        document.getElementById("pos").innerHTML = posX + " " + (posX + 100) + " " + (posY + " " + (posY + 100))
+       
     }
 }
 
@@ -128,7 +128,7 @@ function dibujarPunto() {
 
 function tomarPunto() {
 
-    if ((posAleatoriaX >= posX && posAleatoriaX + 10 <= posX + 100) && (posAleatoriaY >= posY && posAleatoriaY + 10 <= posY + 100)) {
+    if ((posAleatoriaX >= posX && posAleatoriaX + 11 <= posX + 101) && (posAleatoriaY >= posY && posAleatoriaY + 11 <= posY + 101)) {
         posAleatoriaX = random(0, 790)
         posAleatoriaY = random(0, 390)
         ctx.fillStyle = "blue"
