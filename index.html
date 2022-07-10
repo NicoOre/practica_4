@@ -8,12 +8,22 @@
 </head>
 
 <body>
-    <canvas id="canvas" width="800" height="400" style="background-color: rgb(70, 255, 94);"></canvas>
-    <button onclick="facil()">Facil</button>
-    <button onclick="medio()">Medio</button>
-    <button onclick="dificil()">Dificil</button>
-    <p id="tiempo"></p>
-    <p id="puntos"></p>
+    
+    <div id="info">
+        <p id="tiempo">Tiempo: 0</p>
+        <p id="puntos">Puntos: 0</p>
+    </div>
+
+    <div id="miCanvas">
+        <canvas id="canvas" width="800" height="400" style="background-color: rgb(70, 255, 94);"></canvas>
+    </div>
+    
+    <div id="botones">
+        <button onclick="facil()">Facil</button>
+        <button onclick="medio()">Medio</button>
+        <button onclick="dificil()">Dificil</button>
+    </div>
+
 </body>
 
 </html>
