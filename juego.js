@@ -105,10 +105,12 @@ function dibujar() {
 
 function gameOver() {
     limpiar()
+    ctx.fillStyle = "red"
     ctx.font = "100px arial";
     ctx.textBaseline = "middle";
     ctx.textAlign = "center";
     ctx.fillText("Has perdido", 400, 180);
+    ctx.fillStyle = 'black'
     ctx.font = "25px arial";
     ctx.textBaseline = "middle";
     ctx.textAlign = "center";
