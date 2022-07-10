@@ -19,7 +19,7 @@ function facil() {
     ctx = canvas.getContext('2d')
     document.getElementById('tiempo').innerHTML = 'Tiempo: ' + (tiempo)
     tiempo--
-    posAleatoriaX = random(0, 790)
+    posAleatoriaX = random(100, 200)
     posAleatoriaY = random(0, 390)
     posAleatoriaX2 = random(0, 790)
     posAleatoriaY2 = random(0, 390)
@@ -128,12 +128,12 @@ function dibujarPunto() {
 
 function tomarPunto() {
 
-    if ((posAleatoriaX >= posX && posAleatoriaX + 11 <= posX + 101) && (posAleatoriaY >= posY && posAleatoriaY + 11 <= posY + 101)) {
+    if (((posAleatoriaX >= posX - 9 && posAleatoriaX <= posX + 99) && (posAleatoriaX + 10 >= posX + 1 && posAleatoriaX + 10 < posX + 110)) && ((posAleatoriaY >= posY - 9 && posAleatoriaY <= posY + 99) && (posAleatoriaY + 10 >= posY + 1 && posAleatoriaY + 10 < posY + 110))) {
         posAleatoriaX = random(0, 790)
         posAleatoriaY = random(0, 390)
         ctx.fillStyle = "blue"
         ctx.fillRect(posAleatoriaX, posAleatoriaY, 10, 10)
-        puntos ++
+        puntos += 5
     }
 }
 
@@ -147,13 +147,13 @@ function dibujarBuff() {
 }
 
 function tomarBuff() {
-    if ((posAleatoriaX2 >= posX && posAleatoriaX2 + 10 <= posX + 100) && (posAleatoriaY2 >= posY && posAleatoriaY2 + 10 <= posY + 100)) {
+    if (((posAleatoriaX2 >= posX - 9 && posAleatoriaX2 <= posX + 99) && (posAleatoriaX2 + 10 >= posX + 1 && posAleatoriaX2 + 10 < posX + 110)) && ((posAleatoriaY2 >= posY - 9 && posAleatoriaY2 <= posY + 99) && (posAleatoriaY2 + 10 >= posY + 1 && posAleatoriaY2 + 10 < posY + 110))) {
         posAleatoriaX2 = random(0, 790)
         posAleatoriaY2 = random(0, 390)
         ctx.fillStyle = "black"
         ctx.fillRect(posAleatoriaX2, posAleatoriaY2, 10, 10)
         tiempo += 3
-        puntos--
+        puntos -= 2
     }
 }
 
